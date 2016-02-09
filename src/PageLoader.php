@@ -56,11 +56,11 @@ class PageLoader extends ContentLoader {
 	}
 
 	protected function createParser($folder) {
-		return new PageParser($folder);
+		return $this->config->createPageParser($folder);
 	}
 
 	protected function createObject($data, $meta) {
-		return new Page($this->config, $data, $meta);
+		return $this->config->createPageObject($this->config, $data, $meta);
 	}
 
 	protected function getCacheFileName() {

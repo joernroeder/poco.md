@@ -55,8 +55,24 @@ abstract class Config {
 		$this->set('pocomd.navigation', $navigation);
 	}
 
+	public function createNavigationLoader($config) {
+		return new NavigationLoader($config);
+	}
+
+	public function createPageLoader($config, $name, $folderName = null) {
+		return new PageLoader($config, $name, $folderName);
+	}
+
+	public function createPageParser($folder) {
+		return new PageParser($folder);
+	}
+
+	public function createPageObject($config, $data = null, $meta = null, $template = null) {
+		return new Page($config, $data, $meta);
+	}
+
 	public function initNavigation($currentUrl) {
-		$nav = new NavigationLoader($this);
+		$nav = $this->createNavigationLoader($this);
 		$nav->loadNavigation();
 		$links = $nav->getLinks($currentUrl);
 
@@ -82,7 +98,7 @@ abstract class Config {
 	public function renderPage($name) {
 		$folderName = $this->getFolderName($name);
 
-		$pageLoader = new PageLoader($this, $name, $folderName);
+		$pageLoader = $this->createPageLoader($this, $name, $folderName);
 		$page = $pageLoader->load();
 
 		// couldn't load page -> returning 404

@@ -90,7 +90,7 @@ class NavigationLoader extends ContentLoader {
 		foreach ($this->folderMap as $folder) {
 			$folder = (object) $folder;
 
-			$loader = new PageLoader($this->config, $folder->url, $folder->name);
+			$loader = $this->config->createPageLoader($this->config, $folder->url, $folder->name);
 			$project = $loader->load();
 			
 			if (!$project) {

@@ -1,8 +1,9 @@
 <?php
 namespace joernroeder\Pocomd;
 
-//use \Michelf\Markdown as Markdown;
-use \Michelf\MarkdownExtra as Markdown;
+require __DIR__ . '/../vendor/autoload.php';
+
+use Michelf\MarkdownExtra as Markdown;
 use Gregwar\Image\Image;
 
 class PageParser {

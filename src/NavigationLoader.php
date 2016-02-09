@@ -157,7 +157,12 @@ class NavigationLoader extends ContentLoader {
 		return $this->links;
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public function getNavigationItems() {
+		print_r("DEPRECATED: NavigationLoader::getNavigationItems");
+
 		return $this->navigationItems;
 	}
 

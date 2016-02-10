@@ -1,8 +1,6 @@
 <?php
 namespace joernroeder\Pocomd;
 
-require __DIR__ . '/../vendor/autoload.php';
-
 use Michelf\MarkdownExtra as Markdown;
 use Gregwar\Image\Image;
 

@@ -176,6 +176,10 @@ class PageParser {
 			$this->parseDate($date, $metas);
 		}
 
+		if ($authors = $this->getMeta($metas, 'Authors')) {
+			$metas['Authors'] = !is_array($authors) ? array($authors) : $authors;
+		}
+
 		return $metas;
 	}
 

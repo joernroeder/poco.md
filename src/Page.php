@@ -76,10 +76,13 @@ class Page {
 		$data = array_merge(
 			(array) $this->config->getTemplateData(),
 			(array) $this->getData(),
+			array(
+				'LastModified' => $this->meta->lastModified ? $this->meta->lastModified : time()
+			),
 			array('JSON' => $this->toJSON())
 		);
 
-		return $data;		
+		return $data;
 	}
 
 	/**

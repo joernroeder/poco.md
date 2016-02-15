@@ -181,14 +181,14 @@ class PageParser {
 		return $metas;
 	}
 
-	protected function getDescription($content) {
-		$maxLength = 160;
-
+	protected function getDescription($content, $maxLength) {
 		$content = trim(strip_tags($content));
+		$content = preg_replace('/\s\s+/', ' ', $content);
+		$maxLength = !is_null($maxLength) ? $maxLength : 160;
 
 		if( strlen( $content ) > $maxLength ) {
-			$cut_content = substr( $content, 0, $maxLength ); //cut at 200 chars
-			$last_space = strrpos( $cut_content, " " ); //find the position of the last space in the 200 chars text
+			$cut_content = substr( $content, 0, $maxLength ); //cut at 160 chars
+			$last_space = strrpos( $cut_content, " " ); //find the position of the last space in the 160 chars text
 			$short_content = substr( $cut_content, 0, $last_space ); //cut again at the last space
 			$end_content = $short_content."..."; // add three dots
 			
@@ -211,6 +211,7 @@ class PageParser {
 	public function parse($data, $additionalData = array()) {
 		$title = $this->getTitle($data);
 		$metas = $this->getMetas($data);
+		$descriptionLength = isset($metas['DescriptionLength']) ? $metas['DescriptionLength'] : null;
 
 		$keywords = (array) $this->getMeta($metas, 'Keywords');
 		$this->processImages($data, $this->getWidth($metas), join('-', array_merge(array($title), $keywords)));
@@ -220,7 +221,7 @@ class PageParser {
 		return array_merge($metas, array(
 			'Title'			=> $title,
 			'Content'		=> $content,
-			'Description'	=> $this->getDescription($content)
+			'Description'	=> $this->getDescription($content, $descriptionLength)
 		), $additionalData);
 	}
 }

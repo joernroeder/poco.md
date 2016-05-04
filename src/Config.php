@@ -110,14 +110,24 @@ abstract class Config {
 	}
 	
 	public function getTemplateData() {
-		return array_merge(
+		$data = array_merge(
 			$this->getNavigation(),
 			$this->get('template.data')
 		);
+
+		if (method_exists($this->config, 'updateTemplateData')) {
+			$this->config->updateTemplateData($data);
+		}
+
+		return $data;
 	}
 
 	// add 
 	public function updateNavigationItem(&$navItem, $page) {
 	}
 
-}
+}	// provides the ability to update the given template data.
+	public function updateTemplateData(&$templateData) {
+
+	}
+

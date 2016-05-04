@@ -14,7 +14,7 @@ abstract class Config {
 
 	/**
 	 * Config getter.
-	 * Returns the value stored under the given key. 
+	 * Returns the value stored under the given key.
 	 * In addition to values added via `set()` it also checks the class $defaults.
 	 *
 	 * @param  string $key
@@ -41,7 +41,7 @@ abstract class Config {
 
 	/**
 	 * Returns the navigation object stored at `pocomd.navigation`.
-	 * 
+	 *
 	 *
 	 * @return [type] [description]
 	 */
@@ -86,7 +86,7 @@ abstract class Config {
 	public function getFolderName($name) {
 		// todo: construct navigation loader inside config
 		$folderName = $this->get('navigation.loader')->getFolderName($name);
-	
+
 		// couldn't resolve folder path for the given name.
 		if (!$folderName) {
 			return $this->notFound();
@@ -108,7 +108,7 @@ abstract class Config {
 
 		return $this->render($page);
 	}
-	
+
 	public function getTemplateData() {
 		$data = array_merge(
 			$this->getNavigation(),
@@ -122,12 +122,12 @@ abstract class Config {
 		return $data;
 	}
 
-	// add 
+	// add
 	public function updateNavigationItem(&$navItem, $page) {
 	}
 
-}	// provides the ability to update the given template data.
+	// provides the ability to update the given template data.
 	public function updateTemplateData(&$templateData) {
 
 	}
-
+}

@@ -115,7 +115,9 @@ abstract class Config {
 			$this->get('template.data')
 		);
 
-		return $this->updateTemplateData($data);
+		$this->updateTemplateData($data);
+
+		return $data;
 	}
 
 	// add

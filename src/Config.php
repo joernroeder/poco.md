@@ -115,11 +115,7 @@ abstract class Config {
 			$this->get('template.data')
 		);
 
-		if (method_exists($this->config, 'updateTemplateData')) {
-			$this->config->updateTemplateData($data);
-		}
-
-		return $data;
+		return $this->updateTemplateData($data);
 	}
 
 	// add

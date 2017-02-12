@@ -214,7 +214,10 @@ class PageParser {
 		$descriptionLength = isset($metas['DescriptionLength']) ? $metas['DescriptionLength'] : null;
 
 		$keywords = (array) $this->getMeta($metas, 'Keywords');
-		$this->processImages($data, $this->getWidth($metas), join('-', array_merge(array($title), $keywords)));
+		$imagesTitle = wordwrap(join(' ', array_merge(array($title), $keywords)), 100);
+		$imagesTitle = explode("\n", $imagesTitle);
+		$imagesTitle = $imagesTitle[0];
+		$this->processImages($data, $this->getWidth($metas), $imagesTitle);
 
 		$content = Markdown::defaultTransform($data);
 
